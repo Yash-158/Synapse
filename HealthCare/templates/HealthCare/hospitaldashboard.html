@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hospital Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom right, #c7d7f1, #4070df);
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 30px auto;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 32px;
+        font-weight: bold;
+        color: #4c3c9e;
+      }
+
+      .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 23px;
+        padding: 20px 0;
+      }
+
+      .card {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(35, 31, 31, 0.1);
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 1.2s ease, background-color 1.2s ease;
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+        background-color: #4b57fc;
+      }
+
+      .card:hover i,
+      .card:hover h3,
+      .card:hover p {
+        color: #ffffff;
+      }
+
+      .card i {
+        font-size: 48px;
+        color: #4e2eed;
+        transition: color 1.2s ease;
+      }
+
+      .card h3 {
+        margin-top: 15px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+        transition: transform 1.2s ease, background-color 1.2s ease;
+      }
+
+      .card p {
+        color: #666;
+        font-size: 14px;
+        transition: transform 1.2s ease, background-color 1.2s ease;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Hospital Dashboard</h1>
+
+      <div class="card-container">
+        <a href="{% url 'adminpage' %}" style="text-decoration: none;">
+          <div class="card">
+            <i class="fa fa-cogs"></i>
+            <h3>Admin Panel</h3>
+            <p>Manage system configurations and hospital operations</p>
+          </div>
+        </a>
+        <a href="{% url 'patientregister' %}" style="text-decoration: none">
+          <div class="card">
+            <i class="fa fa-user-plus"></i>
+            <h3>Patient Registration</h3>
+            <p>Register new patients in the hospital system</p>
+          </div>
+        </a>
+
+        <div class="card">
+          <i class="fa fa-bed"></i>
+          <h3>In Patient</h3>
+          <p>Manage inpatient admissions and monitoring</p>
+        </div>
+        <div class="card">
+          <i class="fa fa-bed"></i>
+          <h3>Out Patient</h3>
+          <p>Manage outpatient appointments and treatment</p>
+        </div>
+        <div class="card">
+          <i class="fa fa-archive"></i>
+          <h3>Order and Inventory</h3>
+          <p>Manage hospital inventory and place orders for supplies</p>
+        </div>
+        <div class="card">
+          <i class="fa fa-heartbeat"></i>
+          <h3>Operation Theatre</h3>
+          <p>Manage surgeries and procedures in the operation theatre</p>
+        </div>
+        <div class="card">
+          <i class="fa fa-clinic-medical"></i>
+          <h3>Bed Management</h3>
+          <p>Manage bed occupancy and patient assignments</p>
+        </div>
+        <div class="card">
+          <i class="fa fa-calendar-check"></i>
+          <h3>Queue Management</h3>
+          <p>Manage queues for patients and services</p>
+        </div>
+        <a href="{% url 'appointment_management' %}"  style="text-decoration: none;">
+
+          <div class="card">
+            <i class="fa fa-calendar"></i>
+            <h3>Appointment Management</h3>
+            <p>Manage and schedule patient appointments</p>
+          </div>
+        </a>
+        <a href="{% url 'emr' %}" style="text-decoration: none">
+          <div class="card">
+            <i class="fa fa-file-medical"></i>
+            <h3>Electronic Health Record</h3>
+            <p>Maintain patient records electronically for easy access</p>
+          </div>
+        </a>
+        <div class="card">
+          <i class="fa fa-pills"></i>
+          <h3>Pharmacy and Consumable</h3>
+          <p>Manage medicines and consumable items in the pharmacy</p>
+        </div>
+        <div class="card">
+          <i class="fa fa-credit-card"></i>
+          <h3>Financial and Billing</h3>
+          <p>Manage hospital finances and billing system</p>
+        </div>
+        <div class="card">
+          <i class="fa fa-users"></i>
+          <h3>Inter Hospital Communication</h3>
+          <p>Facilitate communication between hospitals</p>
+        </div>
+        <div class="card">
+          <i class="fa fa-flask"></i>
+          <h3>Laboratory and Reports</h3>
+          <p>Manage lab tests and generate patient reports</p>
+        </div>
+        <div class="card">
+          <i class="fa fa-x-ray"></i>
+          <h3>Radiology</h3>
+          <p>Manage radiology tests and imaging reports</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

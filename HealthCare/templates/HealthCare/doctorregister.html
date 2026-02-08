@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Registration</title>
+    <!-- <link rel="stylesheet" href="styles.css"> Link to your existing CSS file for theme -->
+    <style>
+        /* Inline styles for this page, can be moved to the stylesheet */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #c7d7f1, #4070df);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+        }
+        .form-container h2 {
+            color: #2c3e50;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-container label {
+            color: #2c3e50;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-container input, .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        .form-container button {
+            width: 100%;
+            padding: 15px;
+            background-color: #5f5fff;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #4c4ed4;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Doctor Registration Form</h2>
+        <form method="POST">
+            {% csrf_token %}
+            
+            <label for="license_number">License Number</label>
+            <input type="text" id="license_number" name="license_number" required>
+            
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name" required>
+            
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" required>
+            
+            <label for="specialization">Specialization</label>
+            <input type="text" id="specialization" name="specialization" required>
+            
+            <label for="contact_number">Contact Number</label>
+            <input type="text" id="contact_number" name="contact_number" required>
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="hospital_affiliation">Hospital Affiliation</label>
+            <select id="hospital_affiliation" name="hospital_affiliation" required>
+                <!-- Dynamically populate the logged-in user's hospital as the default -->
+                <option value="{{ hospital_id }}" selected>Hospital {{ hospital_id }}</option>
+            </select>
+            
+            <button type="submit">Register Doctor</button>
+        </form>
+    </div>
+</body>
+</html>

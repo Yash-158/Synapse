@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #c7d7f1, #4070df);
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: bold;
+      color: #4c3c9e;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      padding: 20px 0;
+      width: 70%;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(35, 31, 31, 0.1);
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 1.2s ease, background-color 1.2s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      background-color: #4b57fc;
+    }
+
+    .card:hover i,
+    .card:hover h3,
+    .card:hover p {
+      color: #ffffff;
+    }
+
+    .card i {
+      font-size: 48px;
+      color: #4e2eed;
+      transition: color 1.2s ease;
+    }
+
+    .card h3 {
+      margin-top: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+      transition: transform 1.2s ease, background-color 1.2s ease;
+    }
+
+    .card p {
+      color: #666;
+      font-size: 14px;
+      transition: transform 1.2s ease, background-color 1.2s ease;
+    }
+
+    /* Right-aligned Patient Info Section */
+    .patient-info {
+      width: 23%;
+      background-color: rgba(0,0.07,0.1, 0.03);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(35, 31, 31, 0.1);
+      text-align: center;
+      position: sticky;
+      top: 20px;
+      margin-left: auto; /* Align to the right */
+      height: 100vh;
+      color:#ffffff
+    }
+
+    .patient-info img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+
+    .patient-info h2 {
+      font-size: 24px;
+      color: #4c3c9e;
+    }
+
+    .patient-info p {
+      font-size: 14px;
+      color: #ffffff;
+    }
+
+    /* Minimalistic Info */
+    .minimal-info p {
+      font-size: 14px;
+      color: #fff;
+      margin: 5px 0;
+    }
+
+    /* Logout Button */
+    .logout-btn {
+      background-color: #ff4d4d;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      margin-top: 20px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .logout-btn:hover {
+      background-color: #ff1a1a;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <!-- Left side - Dashboard Cards -->
+    <div class="left-panel">
+      <h1>Hello, {{ patient.first_name }} {{ patient.last_name }}</h1>
+      <div class="card-container">
+        <div class="card">
+          <i class="fa fa-file-medical"></i>
+          <h3>Medical Records</h3>
+          <p>Access and manage your medical history</p>
+        </div>
+        <a href="{% url 'book_appointment' %}" style="text-decoration: none;">
+
+          <div class="card">
+            <i class="fa fa-calendar-check"></i>
+            <h3>Appointment Booking</h3>
+            <p>Book your doctor appointments online</p>
+          </div>
+        </a>
+        <div class="card">
+          <i class="fa fa-chart-line"></i>
+          <h3>Health Trends & Insights</h3>
+          <p>Get insights into your health progress</p>
+        </div>
+        <div class="card">
+          <i class="fa fa-flask"></i>
+          <h3>Lab Test Bookings</h3>
+          <p>Book lab tests and check results</p>
+        </div>
+        <div class="card">
+          <i class="fa fa-credit-card"></i>
+          <h3>Insurance & Billing</h3>
+          <p>View your insurance details and bills</p>
+        </div>
+        <div class="card">
+          <i class="fa fa-map-marker-alt"></i>
+          <h3>Nearby Hospitals</h3>
+          <p>Find hospitals near you with the map</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right side - Patient Info -->
+    <div class="patient-info">
+      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Patient Avatar">
+      <h2>{{ patient.first_name }} {{ patient.last_name }}</h2>
+      <div class="minimal-info">
+        <p><strong>Age:</strong> {{ age }} years</p>
+        <p><strong>Gender:</strong> {{ patient.gender }}</p>
+        <p><strong>Blood Type:</strong> {{ patient.bloodgroup }}</p>
+        <p><strong>Weight:</strong> {{ patient.weight }} kg</p>
+        <p><strong>Height:</strong> {{ patient.height }} cm</p>
+        <p><strong>Allergies:</strong> {{ patient.allergies }}</p>
+      </div>
+
+      <!-- Logout Button -->
+      <form action="/logout/" method="POST">
+        {% csrf_token %}
+        <br>
+        <button type="submit" class="logout-btn">Logout</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+
+</html>

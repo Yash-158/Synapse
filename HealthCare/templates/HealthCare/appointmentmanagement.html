@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appointment Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #c7d7f1, #4070df);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            
+        }
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: #4c3c9e;
+        }
+        .appointment-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(35, 31, 31, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 1.2s ease;
+        }
+        .appointment-card:hover {
+            transform: scale(1.05);
+            /* background-color: #4b57fc; */
+        }
+        .appointment-card h3, .appointment-card p {
+            color: #333;
+        }
+        .appointment-card button {
+            background-color: #4b57fc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .appointment-card button:hover {
+            background-color: #3b44e8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Appointment Management</h1>
+        {% for appointment in appointments %}
+            <div class="appointment-card">
+                <h3>{{ appointment.patient.user.first_name }} {{ appointment.patient.user.last_name }}</h3>
+                <p>Symptoms: {{ appointment.symptoms }}</p>
+                <p>Status: {{ appointment.get_status_display }}</p>
+                
+                {% if appointment.status == 'PENDING' %}
+                    <form action="{% url 'approve_appointment' appointment.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit">Approve Appointment</button>
+                    </form>
+                    <form action="{% url 'reject_appointment' appointment.id %}" method="POST" style="margin-top: 10px;">
+                        {% csrf_token %}
+                        <button type="submit">Reject Appointment</button>
+                    </form>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

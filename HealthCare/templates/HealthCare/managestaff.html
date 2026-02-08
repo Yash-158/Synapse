@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Staff - Admin Panel</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(to bottom right, #c7d7f1, #4070df);
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .header {
+        width: 100%;
+        height: 20%;
+        padding: 20px;
+        font-size: 30px;
+        text-align: center;
+        background: white;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+      }
+      .container {
+        padding: 20px;
+        margin-top: 20px;
+        width: 90%;
+        max-width: 1200px;
+        margin: auto;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      th,
+      td {
+        padding: 12px;
+        border: 1px solid #ddd;
+        text-align: left;
+      }
+      th {
+        background-color: #4070df;
+        color: white;
+      }
+      .edit-btn,
+      .delete-btn {
+        padding: 8px 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      .edit-btn {
+        background-color: #28a745;
+        color: white;
+      }
+      .delete-btn {
+        background-color: #dc3545;
+        color: white;
+      }
+      .edit-btn:hover {
+        background-color: #218838;
+      }
+      .delete-btn:hover {
+        background-color: #c82333;
+      }
+      /* .header h2{
+        text-align: center;
+        justify-content: center;
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h2>Manage Staff</h2>
+    </div>
+
+    <div class="container">
+      <h2>Staff List</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Email</th>
+            <th>Hospital</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for doctor in doctors %}
+          <tr>
+            <td>Doctor</td>
+            <td>{{ doctor.first_name }} {{ doctor.last_name }}</td>
+            <td>{{ doctor.contact_number }}</td>
+            <td>{{ doctor.email }}</td>
+            <td>{{ doctor.hospital_affiliation.name }}</td>
+            <td>
+              <a
+                href="{% url 'edit_doctor' doctor.license_number %}"
+                class="edit-btn"
+                style="text-decoration: none"
+              >
+                Edit
+              </a>
+              <a
+                href="{% url 'delete_staff' 'Doctor' doctor.license_number %}"
+                class="delete-btn"
+                style="text-decoration: none"
+                >Delete</a
+              >
+            </td>
+          </tr>
+          {% endfor %}
+          <!-- 
+                {% for nurse in nurses %}
+                <tr>
+                    <td>Nurse</td>
+                    <td>{{ nurse.first_name }} {{ nurse.last_name }}</td>
+                    <td>{{ nurse.contact_number }}</td>
+                    <td>{{ nurse.email }}</td>
+                    <td>{{ nurse.hospital_affiliation.name }}</td>
+                    <td>
+                        <button class="edit-btn">Edit</button>
+                        <a href="{% url 'delete_staff' 'nurse' nurse.license_number %}" class="delete-btn">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+                {% for technician in technicians %}
+                <tr>
+                    <td>Technician</td>
+                    <td>{{ technician.first_name }} {{ technician.last_name }}</td>
+                    <td>{{ technician.contact_number }}</td>
+                    <td>{{ technician.email }}</td>
+                    <td>{{ technician.hospital_affiliation.name }}</td>
+                    <td>
+                        <button class="edit-btn">Edit</button>
+                        <a href="{% url 'delete_staff' 'technician' technician.technician_id %}" class="delete-btn">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+                {% for receptionist in receptionists %}
+                <tr>
+                    <td>Receptionist</td>
+                    <td>{{ receptionist.first_name }} {{ receptionist.last_name }}</td>
+                    <td>{{ receptionist.contact_number }}</td>
+                    <td>{{ receptionist.email }}</td>
+                    <td>{{ receptionist.hospital_affiliation.name }}</td>
+                    <td>
+                        <button class="edit-btn">Edit</button>
+                        <a href="{% url 'delete_staff' 'receptionist' receptionist.receptionist_id %}" class="delete-btn">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %} -->
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

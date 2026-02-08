@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #c7d7f1, #4070df);
+      padding: 0;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 50px auto;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(35, 31, 31, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      color: #4c3c9e;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section h2 {
+      font-size: 20px;
+      color: #4c3c9e;
+      margin-bottom: 15px;
+    }
+
+    .patient-details {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      font-size: 20px;
+    }
+
+    .patient-details div {
+      font-size: 20px;
+      display: flex;
+      justify-content: space-between;
+      padding: 12px;
+      background-color: #f4f7fc;
+      border-radius: 5px;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .patient-details div span {
+      font-weight: bold;
+    }
+
+    .button-container {
+      text-align: center;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      font-size: 14px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .btn-back {
+      background-color: #f0f0f0;
+      color: #333;
+    }
+
+    .btn-reset {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+
+    .btn-submit {
+      background-color: #4e2eed;
+      color: white;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Patient Information</h1>
+
+    <div class="section">
+      <h2>Personal Details</h2>
+      <div class="patient-details">
+        <div><span>First Name:</span> John </div>
+        <div><span>Middle Name:</span> John Doe</div>
+        <div><span>Last Name:</span>  Doe</div>
+        <div><span>Age:</span> 45</div>
+        <div><span>Gender:</span> Male</div>
+        <div><span>Date of Birth:</span> 1980-06-15</div>
+        <div><span> Marital Status</span> Single</div>
+
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Medical Information</h2>
+      <div class="patient-details">
+        <div><span>Blood Group:</span> O+</div>
+        <div><span>Height:</span> 5'9"</div>
+        <div><span>Weight:</span> 75 kg</div>
+        <div><span>Allergies:</span> Penicillin</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Contact Information</h2>
+      <div class="patient-details">
+        <div><span>Phone:</span> +1234567890</div>
+        <div><span>Email:</span> johndoe@example.com</div>
+        <div><span>Emergency Contact:</span> Jane Doe (Wife)</div>
+        <div><span>Emergency Phone:</span> +0987654321</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Address</h2>
+      <div class="patient-details">
+        <div><span>Permanent Address:</span> 123 Main St, Cityville</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Government ID</h2>
+      <div class="patient-details">
+        <div><span>Aadhaar Number:</span> 1234 5678 9012</div>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <button class="btn btn-reset">Edit</button>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

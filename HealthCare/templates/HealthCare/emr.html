@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Patient</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom right, #c7d7f1, #4070df);
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+
+
+
+
+      }
+
+      .container {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(35, 31, 31, 0.1);
+        padding: 30px;
+        max-width: 600px;
+        width: 100%;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 32px;
+        font-weight: bold;
+        color: #4c3c9e;
+        margin-bottom: 20px;
+      }
+
+      .search-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      .search-bar input {
+        width: 80%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        outline: none;
+        box-sizing: border-box;
+      }
+
+      .search-bar button {
+        padding: 10px 15px;
+        font-size: 16px;
+        border-radius: 5px;
+        background-color: #4c3c9e;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        margin-left: 10px;
+      }
+
+      .search-bar button:hover {
+        background-color: #333;
+      }
+
+      .patient-details {
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      .patient-details p {
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      .logout-button {
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
+        margin-top: 20px;
+        background-color: #f44336;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .logout-button:hover {
+        background-color: #d32f2f;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Search Patient by Aadhaar Number</h1>
+      <div class="search-bar">
+        <input
+          type="text"
+          id="aadhaarNumber"
+          placeholder="Enter Aadhaar Number"
+        />
+        <button onclick="searchPatient()">Search</button>
+      </div>
+
+      <div id="patientDetails" class="patient-details" style="display: none">
+        <p><strong>Name:</strong> <span id="patientName"></span></p>
+        <p><strong>Age:</strong> <span id="patientAge"></span></p>
+        <p><strong>Gender:</strong> <span id="patientGender"></span></p>
+        <p>
+          <strong>Blood Group:</strong> <span id="patientBloodGroup"></span>
+        </p>
+        <p><strong>Contact:</strong> <span id="patientContact"></span></p>
+        <p><strong>Email:</strong> <span id="patientEmail"></span></p>
+      </div>
+    </div>
+    <script>
+      function searchPatient() {
+        var aadhaar = document.getElementById("aadhaarNumber").value;
+
+        if (aadhaar) {
+          fetch(`/search_patient/?aadhaar=${aadhaar}`)
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                document.getElementById("patientName").innerText =
+                  data.data.name;
+                document.getElementById("patientAge").innerText = data.data.age;
+                document.getElementById("patientGender").innerText =
+                  data.data.gender;
+                document.getElementById("patientBloodGroup").innerText =
+                  data.data.bloodGroup;
+                document.getElementById("patientContact").innerText =
+                  data.data.contact;
+                document.getElementById("patientEmail").innerText =
+                  data.data.email;
+                document.getElementById("patientDetails").style.display =
+                  "block";
+              } else {
+                alert(data.message);
+                document.getElementById("patientDetails").style.display =
+                  "none";
+              }
+            })
+            .catch((error) => console.error("Error:", error));
+        } else {
+          alert("Please enter an Aadhaar number.");
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #c7d7f1, #4070df);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .login-box {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(35, 31, 31, 0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 32px;
+      color: #4c3c9e;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .form-group button {
+      width: 100%;
+      padding: 12px;
+      background-color: #4e2eed;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-group button:hover {
+      background-color: #3c1d94;
+    }
+
+    .forgot-password {
+      color: #4e2eed;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .forgot-password:hover {
+      text-decoration: underline;
+    }
+
+    .back-icon {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 20px;
+      color: #4e2eed;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="login-box">
+      <h1>Login</h1>
+
+      <!-- Django Form Start -->
+      <form method="POST">
+        {% csrf_token %}
+        
+        <div class="form-group">
+          <input type="text" id="username" name="username" placeholder="Username" required>
+        </div>
+
+        <div class="form-group">
+          <input type="password" id="password" name="password" placeholder="Password" required>
+        </div>
+
+        <div class="form-group">
+          <button type="submit">Login</button>
+        </div>
+      </form>
+      <!-- Django Form End -->
+
+      <!-- Display Django Messages -->
+      {% if messages %}
+        <div style="color: red; font-size: 14px;">
+          <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      <a href="/" class="back" style="text-decoration: none;">Want to select a different role?</a>
+      <br>
+      <a href="{% url 'hospitalregister' %}" class="back" style="text-decoration: none;">Register Your Hospital</a>
+
+    </div>
+  </div>
+
+</body>
+
+</html>

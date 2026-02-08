@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hospital Registration</title>
+    <style>
+      /* Styling to match Synapse HMS theme */
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom right, #c7d7f1, #4070df);
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .form-container {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 800px;
+      }
+
+      .form-container h2 {
+        color: #333;
+        font-size: 28px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .form-container label {
+        font-size: 16px;
+        color: #4c3c9e;
+        margin-top: 10px;
+      }
+
+      .form-container input,
+      .form-container select,
+      .form-container textarea {
+        width: 100%;
+        padding: 12px;
+        margin-top: 8px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+      }
+
+      .form-container button {
+        width: 100%;
+        padding: 15px;
+        background-color: #4c3c9e;
+        color: white;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      .form-container button:hover {
+        background-color: #333;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="form-container">
+        <h2>Hospital Registration Form</h2>
+        <form method="POST">
+          {% csrf_token %}
+
+          <label for="hospital_id">Hospital ID</label>
+          <input type="text" id="hospital_id" name="hospital_id" required />
+
+          <label for="name">Hospital Name</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="address">Address</label>
+          <textarea id="address" name="address" rows="4" required></textarea>
+
+          <label for="contact_number">Contact Number</label>
+          <input
+            type="text"
+            id="contact_number"
+            name="contact_number"
+            required
+          />
+
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="established_date">Established Date</label>
+          <input
+            type="date"
+            id="established_date"
+            name="established_date"
+            required
+          />
+
+          <label for="hospital_type">Hospital Type</label>
+          <select id="hospital_type" name="hospital_type" required>
+            <option value="">Select Hospital Type</option>
+            <option value="Private">Private</option>
+            <option value="Semi Goverment">Semi Goverment</option>
+            <option value="Goverment">Goverment</option>
+          </select>
+
+          <label for="emergency_contact_number">Emergency Contact Number</label>
+          <input
+            type="text"
+            id="emergency_contact_number"
+            name="emergency_contact_number"
+            required
+          />
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+
+          <button type="submit">Register Hospital</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
